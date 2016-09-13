@@ -126,6 +126,7 @@ const createWindow = (browserOpts, defaults, frameOpts, windowState) => {
   browserOpts.height = browserOpts.height < minHeight ? minHeight : browserOpts.height
 
   const autoHideMenuBarSetting = isDarwin || getSetting(settings.AUTO_HIDE_MENU)
+  const isCustomTitlebarDisabled = !isWindows || getSetting(settings.DISABLE_CUSTOM_TITLEBAR)
 
   const windowProps = {
     // smaller min size for "modal" windows
@@ -138,7 +139,7 @@ const createWindow = (browserOpts, defaults, frameOpts, windowState) => {
     autoHideMenuBar: autoHideMenuBarSetting,
     title: appConfig.name,
     webPreferences: defaults.webPreferences,
-    frame: !isWindows
+    frame: isCustomTitlebarDisabled
   }
 
   if (process.platform === 'linux') {

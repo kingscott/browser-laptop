@@ -156,6 +156,7 @@ var rendererIdentifiers = function () {
     'lookupSelection',
     // Other identifiers
     'urlCopied',
+    'disableCustomTitlebar',
     'autoHideMenuBar',
     'unexpectedErrorWindowReload',
     'updateChannel',

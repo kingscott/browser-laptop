@@ -550,6 +550,9 @@ class GeneralTab extends ImmutableComponent {
       <SettingsList>
         <SettingCheckbox dataL10nId='showHomeButton' prefKey={settings.SHOW_HOME_BUTTON} settings={this.props.settings} onChangeSetting={this.props.onChangeSetting} />
         {
+          isWindows ? <SettingCheckbox dataL10nId='disableCustomTitlebar' prefKey={settings.DISABLE_CUSTOM_TITLEBAR} settings={this.props.settings} onChangeSetting={this.props.onChangeSetting} /> : null
+        }
+        {
           isDarwin ? null : <SettingCheckbox dataL10nId='autoHideMenuBar' prefKey={settings.AUTO_HIDE_MENU} settings={this.props.settings} onChangeSetting={this.props.onChangeSetting} />
         }
         <SettingCheckbox dataL10nId='disableTitleMode' prefKey={settings.DISABLE_TITLE_MODE} settings={this.props.settings} onChangeSetting={this.props.onChangeSetting} />
@@ -1337,7 +1340,8 @@ class AboutPreferences extends React.Component {
     })
     aboutActions.changeSetting(key, value)
     if (key === settings.DO_NOT_TRACK || key === settings.HARDWARE_ACCELERATION_ENABLED ||
-      key === settings.PDFJS_ENABLED || key === settings.SMOOTH_SCROLL_ENABLED) {
+      key === settings.PDFJS_ENABLED || key === settings.SMOOTH_SCROLL_ENABLED ||
+      key === settings.DISABLE_CUSTOM_TITLEBAR) {
       ipc.send(messages.PREFS_RESTART, key, value)
     }
     if (key === settings.PAYMENTS_ENABLED) {

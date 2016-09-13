@@ -11,6 +11,7 @@ const settings = {
   DEFAULT_DOWNLOAD_SAVE_PATH: 'general.downloads.default-save-path',
   AUTO_HIDE_MENU: 'general.autohide-menu',
   DISABLE_TITLE_MODE: 'general.disable-title-mode',
+  DISABLE_CUSTOM_TITLEBAR: 'general.disable-custom-titlebar',
   // Search tab
   DEFAULT_SEARCH_ENGINE: 'search.default-search-engine',
   OFFER_SEARCH_SUGGESTIONS: 'search.offer-search-suggestions',
