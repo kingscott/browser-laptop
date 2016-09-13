@@ -8,6 +8,7 @@ const ImmutableComponent = require('./immutableComponent')
 const windowActions = require('../actions/windowActions')
 const cx = require('../lib/classSet.js')
 const KeyCodes = require('../constants/keyCodes')
+const { formatAccelerator } = require('../../app/common/lib/formatUtil')
 
 class ContextMenuItem extends ImmutableComponent {
   componentDidMount () {
@@ -110,61 +111,6 @@ class ContextMenuItem extends ImmutableComponent {
     }
     return ''
   }
-
-  // BSCTODO: break this out to a utility class & cleanup
-  // see https://github.com/electron/electron/blob/master/docs/api/accelerator.md
-  formatAccelerator (accelerator) {
-    const macOrderLookup = (value) => {
-      switch (value) {
-        case 'Alt':
-        case 'Option':
-        case 'AltGr':
-        case 'Super':
-          return 0
-        case 'Shift':
-          return 1
-        case 'CmdOrCtrl':
-        case 'Control':
-        case 'Command':
-          return 2
-        default:
-          return 3
-      }
-    }
-    const defaultOrderLookup = (value) => {
-      switch (value) {
-        case 'CmdOrCtrl': return 0
-        case 'Alt': return 1
-        case 'Shift': return 2
-        default: return 3
-      }
-    }
-    let result = accelerator
-    let splitResult = accelerator.split('+')
-    // sort in proper order, based on OS
-    // also, replace w/ name or symbol
-    if (process.platform === 'darwin') {
-      splitResult.sort(function (left, right) {
-        if (left === right) return 0
-        if (macOrderLookup(left) > macOrderLookup(right)) return 1
-        return -1
-      })
-      result = splitResult.join('')
-      result = result.replace('CmdOrCtrl', '⌘')
-      result = result.replace('Alt', '⌥')
-      result = result.replace('Option', '⌥')
-      result = result.replace('Super', '⌘')
-    } else {
-      splitResult.sort(function (left, right) {
-        if (left === right) return 0
-        if (defaultOrderLookup(left) > defaultOrderLookup(right)) return 1
-        return -1
-      })
-      result = splitResult.join('+')
-      result = result.replace('CmdOrCtrl', 'Ctrl')
-    }
-    return result
-  }
   render () {
     const iconSize = 16
     let iconStyle = {
@@ -244,7 +190,7 @@ class ContextMenuItem extends ImmutableComponent {
         : this.hasAccelerator
           ? <span className='submenuIndicatorContainer'>
             <span className='submenuIndicatorSpacer' />
-            <span className='submenuIndicator'>{this.formatAccelerator(this.accelerator)}</span>
+            <span className='submenuIndicator'>{formatAccelerator(this.accelerator)}</span>
           </span>
           : null
       }
