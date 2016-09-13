@@ -6,6 +6,7 @@
 
 const electron = require('electron')
 const importer = electron.importer
+// const dialog = electron.dialog
 const Immutable = require('immutable')
 const siteUtil = require('../js/state/siteUtil')
 const AppStore = require('../js/stores/appStore')
@@ -30,6 +31,21 @@ importer.on('update-supported-browsers', (e, detail) => {
   // importer.importData(['0', 'false', 'true', 'false', 'false', 'false', 'false', 'false'])
   // chrome dev test
   // importer.importData(['2', 'true', 'true', 'false', 'false', 'false', 'false', 'true'])
+
+  // Import from HTML
+  /*
+  const files = dialog.showOpenDialog({
+    properties: ['openFile'],
+    filters: [{
+      name: 'HTML',
+      extensions: ['html', 'htm']
+    }]
+  })
+  if (files && files.length > 0) {
+    const file = files[0]
+    importer.importHTML(file)
+  }
+  */
 })
 
 importer.on('show-warning-dialog', (e) => {
