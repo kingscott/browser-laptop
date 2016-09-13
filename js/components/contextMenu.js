@@ -190,7 +190,7 @@ class ContextMenuItem extends ImmutableComponent {
         : this.hasAccelerator
           ? <span className='submenuIndicatorContainer'>
             <span className='submenuIndicatorSpacer' />
-            <span className='submenuIndicator'>{formatAccelerator(this.accelerator)}</span>
+            <span className='accelerator'>{formatAccelerator(this.accelerator)}</span>
           </span>
           : null
       }
