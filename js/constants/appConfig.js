@@ -82,6 +82,7 @@ module.exports = {
   defaultSettings: {
     'general.language': null, // null means to use the OS lang
     'general.startup-mode': 'lastTime',
+    'general.newtab-mode': 'newTabPage',
     'general.homepage': 'https://www.brave.com',
     'general.show-home-button': false,
     'general.useragent.value': null, // Set at runtime
